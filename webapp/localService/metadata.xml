@@ -1,0 +1,1416 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="http://sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="cds_zsm_ui_c_skillmatcher" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="first_pageType" sap:label="PROJECTION VIEW FOR BUSSINESS UNITS" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="bu_id"/>
+                </Key>
+                <Property Name="bu_id" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="name" Type="Edm.String" MaxLength="50" sap:label="Data Elemt for name" sap:heading="" sap:value-list="standard"/>
+                <NavigationProperty Name="to_employee" Relationship="cds_zsm_ui_c_skillmatcher.assoc_5FB6917152C91BF71BA7493246C1A180" FromRole="FromRole_assoc_5FB6917152C91BF71BA7493246C1A180" ToRole="ToRole_assoc_5FB6917152C91BF71BA7493246C1A180"/>
+            </EntityType>
+            <EntityType Name="CertificatesAllType" sap:label="Projection View for Certificate list" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="id"/>
+                    <PropertyRef Name="employee_id"/>
+                </Key>
+                <Property Name="id" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="employee_id" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="certificate_id" Type="Edm.String" MaxLength="15" sap:display-format="NonNegative" sap:label="Certification ID" sap:quickinfo="Data Element for Certification ID"/>
+                <Property Name="Name" Type="Edm.String" MaxLength="100" sap:label="Certification Name" sap:heading=""/>
+                <Property Name="Description" Type="Edm.String" MaxLength="1333" sap:label="DESCRIPTION" sap:quickinfo="Description Data Element"/>
+                <Property Name="ObtainingDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Date" sap:quickinfo="DATE data element"/>
+                <Property Name="FirstName" Type="Edm.String" MaxLength="50" sap:label="Data Elemt for name"/>
+                <Property Name="LastName" Type="Edm.String" MaxLength="50" sap:label="Data Elemt for name"/>
+                <NavigationProperty Name="to_EmployeeList" Relationship="cds_zsm_ui_c_skillmatcher.assoc_7F067EAEDB95E20E9834246AD241A11B" FromRole="FromRole_assoc_7F067EAEDB95E20E9834246AD241A11B" ToRole="ToRole_assoc_7F067EAEDB95E20E9834246AD241A11B"/>
+            </EntityType>
+            <EntityType Name="NewCertificationType" sap:label="Projection view for a new certification" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="id"/>
+                    <PropertyRef Name="employee_id"/>
+                </Key>
+                <Property Name="id" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="employee_id" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="certificate_id" Type="Edm.String" MaxLength="15" sap:display-format="NonNegative" sap:label="Certification ID" sap:quickinfo="Data Element for Certification ID"/>
+                <Property Name="description" Type="Edm.String" MaxLength="1333" sap:label="DESCRIPTION" sap:quickinfo="Description Data Element"/>
+                <Property Name="obtaining_date" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Date" sap:quickinfo="DATE data element"/>
+                <Property Name="name" Type="Edm.String" MaxLength="100" sap:label="Certification Name" sap:heading=""/>
+            </EntityType>
+            <EntityType Name="CompProjType" sap:label="Projection view for Completed Projects" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="emp_id"/>
+                    <PropertyRef Name="project_id"/>
+                </Key>
+                <Property Name="emp_id" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="project_id" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="rv_project_name" Type="Edm.String" MaxLength="20" sap:label="Project Name" sap:heading=""/>
+                <Property Name="StartDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Date" sap:quickinfo="DATE data element"/>
+                <Property Name="EndDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Date" sap:quickinfo="DATE data element"/>
+                <Property Name="TeamSize" Type="Edm.Int16" sap:label="Team Size" sap:heading=""/>
+                <Property Name="Points" Type="Edm.Byte" sap:label="Points" sap:heading=""/>
+                <NavigationProperty Name="to_Employee" Relationship="cds_zsm_ui_c_skillmatcher.assoc_623556D74CB95732A86F6AA888DAE6FA" FromRole="FromRole_assoc_623556D74CB95732A86F6AA888DAE6FA" ToRole="ToRole_assoc_623556D74CB95732A86F6AA888DAE6FA"/>
+            </EntityType>
+            <EntityType Name="CompTrainingsType" sap:label="Projection view for completed trainings" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="employee_id"/>
+                    <PropertyRef Name="training_id"/>
+                </Key>
+                <Property Name="employee_id" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="training_id" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="name" Type="Edm.String" MaxLength="50" sap:label="Data Elemt for name" sap:heading=""/>
+                <Property Name="start_date" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Date" sap:quickinfo="DATE data element"/>
+                <Property Name="end_date" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Date" sap:quickinfo="DATE data element"/>
+                <Property Name="description" Type="Edm.String" MaxLength="1333" sap:label="DESCRIPTION" sap:quickinfo="Description Data Element"/>
+                <NavigationProperty Name="to_Employee" Relationship="cds_zsm_ui_c_skillmatcher.assoc_442FED0326705DFA18D6A5248E4F3865" FromRole="FromRole_assoc_442FED0326705DFA18D6A5248E4F3865" ToRole="ToRole_assoc_442FED0326705DFA18D6A5248E4F3865"/>
+            </EntityType>
+            <EntityType Name="DispProjType" sap:label="Projection view for zsm_I_match_projects" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="rv_employee_id"/>
+                    <PropertyRef Name="rv_project_id"/>
+                </Key>
+                <Property Name="rv_employee_id" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="rv_project_id" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="rv_project_name" Type="Edm.String" MaxLength="20" sap:label="Project Name" sap:heading=""/>
+                <Property Name="TeamMembers" Type="Edm.String"/>
+                <Property Name="Description" Type="Edm.String" MaxLength="1333" sap:label="DESCRIPTION" sap:quickinfo="Description Data Element"/>
+                <Property Name="rv_team_size" Type="Edm.Int16" sap:label="Team Size" sap:heading=""/>
+                <NavigationProperty Name="to_EmployeeList" Relationship="cds_zsm_ui_c_skillmatcher.assoc_8C6E910829E52E6B5CD9CF2092AC3098" FromRole="FromRole_assoc_8C6E910829E52E6B5CD9CF2092AC3098" ToRole="ToRole_assoc_8C6E910829E52E6B5CD9CF2092AC3098"/>
+            </EntityType>
+            <EntityType Name="EmployeeType" sap:label="Projection view for employee list" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="employee_id"/>
+                </Key>
+                <Property Name="employee_id" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="buid" Type="Edm.String" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="employee_name" Type="Edm.String" MaxLength="101"/>
+                <Property Name="emp_position" Type="Edm.String" MaxLength="30" sap:label="position" sap:heading=""/>
+                <Property Name="emp_level" Type="Edm.String" MaxLength="30" sap:label="Level Data Element" sap:heading=""/>
+                <Property Name="EmpLevel" Type="Edm.String" MaxLength="60" sap:label="Short Descript." sap:quickinfo="Short Text for Fixed Values" sap:value-list="standard"/>
+                <Property Name="team" Type="Edm.String" MaxLength="50" sap:label="Team of an Employee" sap:heading=""/>
+                <Property Name="emp_image" Type="Edm.String" MaxLength="256" sap:display-format="UpperCase" sap:label="Image" sap:quickinfo="Image Data Element"/>
+                <NavigationProperty Name="to_BU" Relationship="cds_zsm_ui_c_skillmatcher.assoc_40B30A374DD605E427B8A73D3876CAB0" FromRole="FromRole_assoc_40B30A374DD605E427B8A73D3876CAB0" ToRole="ToRole_assoc_40B30A374DD605E427B8A73D3876CAB0"/>
+                <NavigationProperty Name="to_Certificates" Relationship="cds_zsm_ui_c_skillmatcher.assoc_1BE7924F04B4D00ED7E9292C1B3D4D37" FromRole="FromRole_assoc_1BE7924F04B4D00ED7E9292C1B3D4D37" ToRole="ToRole_assoc_1BE7924F04B4D00ED7E9292C1B3D4D37"/>
+                <NavigationProperty Name="to_CompProj" Relationship="cds_zsm_ui_c_skillmatcher.assoc_FBC0A5E04A91057359541409E784E35A" FromRole="FromRole_assoc_FBC0A5E04A91057359541409E784E35A" ToRole="ToRole_assoc_FBC0A5E04A91057359541409E784E35A"/>
+                <NavigationProperty Name="to_CompTrainings" Relationship="cds_zsm_ui_c_skillmatcher.assoc_5B4329CC5EEEC24F3834D53B98C2A901" FromRole="FromRole_assoc_5B4329CC5EEEC24F3834D53B98C2A901" ToRole="ToRole_assoc_5B4329CC5EEEC24F3834D53B98C2A901"/>
+                <NavigationProperty Name="to_details" Relationship="cds_zsm_ui_c_skillmatcher.assoc_96243816E8A000EE99D1E0349F43E2E6" FromRole="FromRole_assoc_96243816E8A000EE99D1E0349F43E2E6" ToRole="ToRole_assoc_96243816E8A000EE99D1E0349F43E2E6"/>
+                <NavigationProperty Name="to_DispProj" Relationship="cds_zsm_ui_c_skillmatcher.assoc_D1BD2D0D02319180230039C1AA418AE2" FromRole="FromRole_assoc_D1BD2D0D02319180230039C1AA418AE2" ToRole="ToRole_assoc_D1BD2D0D02319180230039C1AA418AE2"/>
+                <NavigationProperty Name="to_EmpLevel" Relationship="cds_zsm_ui_c_skillmatcher.assoc_58A45DC774C03F18230EA9DD05944EB8" FromRole="FromRole_assoc_58A45DC774C03F18230EA9DD05944EB8" ToRole="ToRole_assoc_58A45DC774C03F18230EA9DD05944EB8"/>
+                <NavigationProperty Name="to_LiveProj" Relationship="cds_zsm_ui_c_skillmatcher.assoc_8CC5126952246E3A3A44958FC3EBD760" FromRole="FromRole_assoc_8CC5126952246E3A3A44958FC3EBD760" ToRole="ToRole_assoc_8CC5126952246E3A3A44958FC3EBD760"/>
+                <NavigationProperty Name="to_SkillLanguage" Relationship="cds_zsm_ui_c_skillmatcher.assoc_B9291493AF8925E9A27BB23FEEE78AA7" FromRole="FromRole_assoc_B9291493AF8925E9A27BB23FEEE78AA7" ToRole="ToRole_assoc_B9291493AF8925E9A27BB23FEEE78AA7"/>
+                <NavigationProperty Name="to_SkillManagement" Relationship="cds_zsm_ui_c_skillmatcher.assoc_7F7A85ABE4B3471171AF6564A42AAD27" FromRole="FromRole_assoc_7F7A85ABE4B3471171AF6564A42AAD27" ToRole="ToRole_assoc_7F7A85ABE4B3471171AF6564A42AAD27"/>
+                <NavigationProperty Name="to_SkillPeople" Relationship="cds_zsm_ui_c_skillmatcher.assoc_8088A7D061B91B7E6901F1C6A0C81C25" FromRole="FromRole_assoc_8088A7D061B91B7E6901F1C6A0C81C25" ToRole="ToRole_assoc_8088A7D061B91B7E6901F1C6A0C81C25"/>
+                <NavigationProperty Name="to_SkillTechnical" Relationship="cds_zsm_ui_c_skillmatcher.assoc_F28CB34E5EDE551DB6689E16307022CC" FromRole="FromRole_assoc_F28CB34E5EDE551DB6689E16307022CC" ToRole="ToRole_assoc_F28CB34E5EDE551DB6689E16307022CC"/>
+                <NavigationProperty Name="to_Trainings" Relationship="cds_zsm_ui_c_skillmatcher.assoc_DD6BB0EE39001235CF824D6B8CA67A88" FromRole="FromRole_assoc_DD6BB0EE39001235CF824D6B8CA67A88" ToRole="ToRole_assoc_DD6BB0EE39001235CF824D6B8CA67A88"/>
+            </EntityType>
+            <EntityType Name="DetailsEmpType" sap:label="PROJECTION VIEW FOR EMPLOYEE DETAILS" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="employee_id"/>
+                    <PropertyRef Name="buid"/>
+                </Key>
+                <Property Name="employee_id" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="buid" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="employee_name" Type="Edm.String" MaxLength="101"/>
+                <Property Name="emp_position" Type="Edm.String" MaxLength="30" sap:label="position" sap:heading=""/>
+                <Property Name="team" Type="Edm.String" MaxLength="50" sap:label="Team of an Employee" sap:heading=""/>
+                <Property Name="emp_image" Type="Edm.String" MaxLength="256" sap:display-format="UpperCase" sap:label="Image" sap:quickinfo="Image Data Element"/>
+                <Property Name="emp_level" Type="Edm.String" MaxLength="30" sap:label="Level Data Element" sap:heading=""/>
+                <Property Name="EmpLevel" Type="Edm.String" MaxLength="60" sap:label="Short Descript." sap:quickinfo="Short Text for Fixed Values" sap:value-list="standard"/>
+                <Property Name="hire_date" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Date" sap:quickinfo="DATE data element"/>
+                <Property Name="birth_date" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Date" sap:quickinfo="DATE data element"/>
+                <Property Name="educational_qualification" Type="Edm.String" MaxLength="60" sap:label="Educational Qualific" sap:quickinfo="Educational Qualification Data Element"/>
+                <Property Name="EmpQual" Type="Edm.String" MaxLength="60" sap:label="Short Descript." sap:quickinfo="Short Text for Fixed Values" sap:value-list="standard"/>
+                <Property Name="gender" Type="Edm.String" MaxLength="1" sap:label="GENDER" sap:quickinfo="GENDER Data Element"/>
+                <Property Name="EmpGender" Type="Edm.String" MaxLength="60" sap:label="Short Descript." sap:quickinfo="Short Text for Fixed Values" sap:value-list="standard"/>
+                <Property Name="marital_status" Type="Edm.String" MaxLength="30" sap:label="Marital Status Data Element" sap:heading=""/>
+                <Property Name="EmpStatus" Type="Edm.String" MaxLength="60" sap:label="Short Descript." sap:quickinfo="Short Text for Fixed Values" sap:value-list="standard"/>
+                <Property Name="address" Type="Edm.String" MaxLength="50" sap:label="Adress" sap:quickinfo="Address Data Element"/>
+                <Property Name="email" Type="Edm.String" MaxLength="50" sap:label="E-MAIL" sap:quickinfo="Email of an Employee"/>
+                <Property Name="empl_phone_no" Type="Edm.String" MaxLength="15" sap:display-format="UpperCase" sap:label="Phone Number Data Element" sap:heading=""/>
+                <NavigationProperty Name="to_EmpGender" Relationship="cds_zsm_ui_c_skillmatcher.assoc_1827219D5195A89204A54A8B7BEE78D0" FromRole="FromRole_assoc_1827219D5195A89204A54A8B7BEE78D0" ToRole="ToRole_assoc_1827219D5195A89204A54A8B7BEE78D0"/>
+                <NavigationProperty Name="to_EmpLevel" Relationship="cds_zsm_ui_c_skillmatcher.assoc_9A735CDF64382ACAE3481A8953FFE00A" FromRole="FromRole_assoc_9A735CDF64382ACAE3481A8953FFE00A" ToRole="ToRole_assoc_9A735CDF64382ACAE3481A8953FFE00A"/>
+                <NavigationProperty Name="to_employee" Relationship="cds_zsm_ui_c_skillmatcher.assoc_15835D4F896E9BB549152E54BA61A588" FromRole="FromRole_assoc_15835D4F896E9BB549152E54BA61A588" ToRole="ToRole_assoc_15835D4F896E9BB549152E54BA61A588"/>
+                <NavigationProperty Name="to_EmpQual" Relationship="cds_zsm_ui_c_skillmatcher.assoc_7DED8D7B72E4BA663163D9EA5450E382" FromRole="FromRole_assoc_7DED8D7B72E4BA663163D9EA5450E382" ToRole="ToRole_assoc_7DED8D7B72E4BA663163D9EA5450E382"/>
+                <NavigationProperty Name="to_EmpStatus" Relationship="cds_zsm_ui_c_skillmatcher.assoc_33AE6536DF4B96C197BCBCAA327C1A3F" FromRole="FromRole_assoc_33AE6536DF4B96C197BCBCAA327C1A3F" ToRole="ToRole_assoc_33AE6536DF4B96C197BCBCAA327C1A3F"/>
+            </EntityType>
+            <EntityType Name="ProjLiveType" sap:label="Projection view for on going projects" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="project_id"/>
+                </Key>
+                <Property Name="project_id" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="emp_id" Type="Edm.String" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="rv_project_name" Type="Edm.String" MaxLength="20" sap:label="Project Name" sap:heading=""/>
+                <Property Name="Status" Type="Edm.Int16" sap:label="Project status" sap:heading=""/>
+                <Property Name="rv_team_members" Type="Edm.String"/>
+                <NavigationProperty Name="to_Employee" Relationship="cds_zsm_ui_c_skillmatcher.assoc_3B102CFEDE81D05EEC0978A0C3460D9B" FromRole="FromRole_assoc_3B102CFEDE81D05EEC0978A0C3460D9B" ToRole="ToRole_assoc_3B102CFEDE81D05EEC0978A0C3460D9B"/>
+            </EntityType>
+            <EntityType Name="NewEmployeeType" sap:label="Projection view to create a new Employee" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="employee_id"/>
+                </Key>
+                <Property Name="employee_id" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="buid" Type="Edm.String" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="first_name" Type="Edm.String" MaxLength="50" sap:label="Data Elemt for name" sap:heading=""/>
+                <Property Name="last_name" Type="Edm.String" MaxLength="50" sap:label="Data Elemt for name" sap:heading=""/>
+                <Property Name="email" Type="Edm.String" MaxLength="50" sap:label="E-MAIL" sap:quickinfo="Email of an Employee"/>
+                <Property Name="birth_date" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Date" sap:quickinfo="DATE data element"/>
+                <Property Name="gender" Type="Edm.String" MaxLength="1" sap:label="GENDER" sap:quickinfo="GENDER Data Element"/>
+                <Property Name="marital_status" Type="Edm.String" MaxLength="30" sap:label="Marital Status Data Element" sap:heading=""/>
+                <Property Name="address" Type="Edm.String" MaxLength="50" sap:label="Adress" sap:quickinfo="Address Data Element"/>
+                <Property Name="empl_phone_no" Type="Edm.String" MaxLength="15" sap:display-format="UpperCase" sap:label="Phone Number Data Element" sap:heading=""/>
+                <Property Name="educational_qualification" Type="Edm.String" MaxLength="60" sap:label="Educational Qualific" sap:quickinfo="Educational Qualification Data Element"/>
+                <Property Name="team" Type="Edm.String" MaxLength="50" sap:label="Team of an Employee" sap:heading=""/>
+                <Property Name="emp_position" Type="Edm.String" MaxLength="30" sap:label="position" sap:heading=""/>
+                <Property Name="hire_date" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Date" sap:quickinfo="DATE data element"/>
+                <Property Name="emp_level" Type="Edm.String" MaxLength="30" sap:label="Level Data Element" sap:heading=""/>
+                <Property Name="emp_image" Type="Edm.String" MaxLength="256" sap:display-format="UpperCase" sap:label="Image" sap:quickinfo="Image Data Element"/>
+                <Property Name="end_date" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Date" sap:quickinfo="DATE data element"/>
+            </EntityType>
+            <EntityType Name="NewSkillType" sap:label="Projection view to for a new skill" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="id_skill"/>
+                </Key>
+                <Property Name="id_skill" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="skill_type" Type="Edm.String" MaxLength="11" sap:label="Skill type data element" sap:heading=""/>
+                <Property Name="skill_name" Type="Edm.String" MaxLength="30" sap:label="Skill name data element" sap:heading=""/>
+            </EntityType>
+            <EntityType Name="NewSkillEmployeeType" sap:label="Projection view new skill for employee" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="id_skill"/>
+                    <PropertyRef Name="id_employee"/>
+                </Key>
+                <Property Name="id_skill" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="id_employee" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="skill_level" Type="Edm.Int16" sap:label="Skill level" sap:heading=""/>
+                <Property Name="quality" Type="Edm.Int16" sap:label="Skill quality" sap:heading=""/>
+                <Property Name="skill_name" Type="Edm.String" MaxLength="30" sap:label="Skill name data element" sap:heading=""/>
+            </EntityType>
+            <EntityType Name="NewTrainingEmployeeType" sap:label="Projection view for employee trainings" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="training_id"/>
+                    <PropertyRef Name="employee_id"/>
+                </Key>
+                <Property Name="training_id" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="employee_id" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+            </EntityType>
+            <EntityType Name="OrderedSkillsEmpType" sap:label="Projection view display ordered skills" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="id_skill"/>
+                    <PropertyRef Name="skill_name"/>
+                    <PropertyRef Name="skill_level"/>
+                    <PropertyRef Name="buid"/>
+                </Key>
+                <Property Name="id_skill" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="skill_name" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="Skill Name" sap:quickinfo="Skill name data element"/>
+                <Property Name="skill_level" Type="Edm.Int16" Nullable="false" sap:label="Skill Level" sap:quickinfo="Skill level"/>
+                <Property Name="buid" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="skill_type" Type="Edm.String" MaxLength="11" sap:label="Skill type data element" sap:heading=""/>
+                <Property Name="Text" Type="Edm.String" MaxLength="60" sap:label="Skill Type" sap:quickinfo="Short Text for Fixed Values"/>
+                <Property Name="count_skills" Type="Edm.Int32" sap:label="Number of employees"/>
+                <Property Name="BU_Name" Type="Edm.String" MaxLength="50" sap:label="Business Unit" sap:quickinfo="Data Elemt for name"/>
+            </EntityType>
+            <EntityType Name="SearchProjectsCrossBUType" sap:label="Searching Projects cross BU" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="rv_project_id"/>
+                    <PropertyRef Name="rv_bu_id"/>
+                </Key>
+                <Property Name="rv_project_id" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="rv_bu_id" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="projectName" Type="Edm.String" MaxLength="20" sap:label="Project Name"/>
+                <Property Name="buName" Type="Edm.String" MaxLength="50" sap:label="Business Unit" sap:quickinfo="Data Elemt for name"/>
+                <Property Name="projectStatus" Type="Edm.Int16" sap:label="Project Status" sap:quickinfo="Project status"/>
+                <Property Name="customerName" Type="Edm.String" MaxLength="30" sap:label="Customer Name" sap:quickinfo="Customer name"/>
+                <Property Name="customerContact" Type="Edm.String" MaxLength="50" sap:label="Customer Contact" sap:quickinfo="Customer contact person"/>
+                <Property Name="customerMail" Type="Edm.String" MaxLength="50" sap:label="Customer mail" sap:quickinfo="Email of an Employee"/>
+                <Property Name="customerPhone" Type="Edm.String" MaxLength="15" sap:display-format="UpperCase" sap:label="Customer phone" sap:quickinfo="Phone Number Data Element"/>
+                <Property Name="description" Type="Edm.String" MaxLength="1333" sap:label="Description" sap:quickinfo="Description Data Element"/>
+                <Property Name="startDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Start Date" sap:quickinfo="DATE data element"/>
+                <Property Name="teamMembers" Type="Edm.String" sap:label="Team Members"/>
+                <Property Name="endDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="End Date" sap:quickinfo="DATE data element"/>
+                <Property Name="dueDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Due Date" sap:quickinfo="DATE data element"/>
+                <Property Name="funcReq" Type="Edm.String" MaxLength="1333" sap:label="Functional Requirements" sap:quickinfo="Project Requirements"/>
+                <Property Name="nonFuncReq" Type="Edm.String" MaxLength="1333" sap:label="Non-Functional Requirements" sap:quickinfo="Project Requirements"/>
+            </EntityType>
+            <EntityType Name="ProjectsOverviewType" sap:label="Projection view for available projects" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="rv_project_id"/>
+                    <PropertyRef Name="rv_bu_id"/>
+                </Key>
+                <Property Name="rv_project_id" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="rv_bu_id" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="project_name" Type="Edm.String" MaxLength="20" sap:label="Project Name"/>
+                <Property Name="project_description" Type="Edm.String" MaxLength="1333" sap:label="Project Description" sap:quickinfo="Description Data Element"/>
+                <Property Name="rv_team_members" Type="Edm.String" sap:label="Team Members"/>
+                <Property Name="customer_name" Type="Edm.String" MaxLength="30" sap:label="Customer Name" sap:quickinfo="Customer name"/>
+                <Property Name="BU_Name" Type="Edm.String" MaxLength="50" sap:label="Business Unit" sap:quickinfo="Data Elemt for name"/>
+            </EntityType>
+            <EntityType Name="NewProjectType" sap:label="Projection view for a new project" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="project_id"/>
+                </Key>
+                <Property Name="project_id" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="project_name" Type="Edm.String" MaxLength="20" sap:label="Project Name" sap:heading=""/>
+                <Property Name="start_date" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Date" sap:quickinfo="DATE data element"/>
+                <Property Name="end_date" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Date" sap:quickinfo="DATE data element"/>
+                <Property Name="due_date" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Date" sap:quickinfo="DATE data element"/>
+                <Property Name="project_status" Type="Edm.Int16" sap:label="Project status" sap:heading=""/>
+                <Property Name="project_context" Type="Edm.String" MaxLength="1333" sap:label="Project context" sap:heading=""/>
+                <Property Name="project_description" Type="Edm.String" MaxLength="1333" sap:label="DESCRIPTION" sap:quickinfo="Description Data Element"/>
+                <Property Name="team_size" Type="Edm.Int16" sap:label="Team Size" sap:heading=""/>
+                <Property Name="customer_name" Type="Edm.String" MaxLength="30" sap:label="Customer Name" sap:quickinfo="Customer name"/>
+                <Property Name="customer_contact" Type="Edm.String" MaxLength="50" sap:label="Customer Contact per" sap:quickinfo="Customer contact person"/>
+                <Property Name="customer_mail" Type="Edm.String" MaxLength="50" sap:label="E-MAIL" sap:quickinfo="Email of an Employee"/>
+                <Property Name="customer_phone" Type="Edm.String" MaxLength="15" sap:display-format="UpperCase" sap:label="Phone Number Data Element" sap:heading=""/>
+                <Property Name="points" Type="Edm.Byte" sap:label="Points" sap:heading=""/>
+                <Property Name="functional_req" Type="Edm.String" MaxLength="1333" sap:label="Project Requirements" sap:heading=""/>
+                <Property Name="non_funct_req" Type="Edm.String" MaxLength="1333" sap:label="Project Requirements" sap:heading=""/>
+            </EntityType>
+            <EntityType Name="NewProjectSkillsType" sap:label="Projection view for projects skills" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="id_skill"/>
+                    <PropertyRef Name="project_id"/>
+                </Key>
+                <Property Name="id_skill" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="project_id" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+            </EntityType>
+            <EntityType Name="ProjDetailsType" sap:label="Projection view for ZSM_I_PROJ_DETAILS" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="project_id"/>
+                </Key>
+                <Property Name="project_id" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="project_name" Type="Edm.String" MaxLength="20" sap:label="Project Name" sap:heading=""/>
+                <Property Name="project_description" Type="Edm.String" MaxLength="1333" sap:label="DESCRIPTION" sap:quickinfo="Description Data Element"/>
+                <Property Name="customer_name" Type="Edm.String" MaxLength="30" sap:label="Customer Name" sap:quickinfo="Customer name"/>
+                <Property Name="customer_contact" Type="Edm.String" MaxLength="50" sap:label="Customer Contact per" sap:quickinfo="Customer contact person"/>
+                <Property Name="customer_mail" Type="Edm.String" MaxLength="50" sap:label="E-MAIL" sap:quickinfo="Email of an Employee"/>
+                <Property Name="customer_phone" Type="Edm.String" MaxLength="15" sap:display-format="UpperCase" sap:label="Phone Number Data Element" sap:heading=""/>
+                <Property Name="project_context" Type="Edm.String" MaxLength="1333" sap:label="Project context" sap:heading=""/>
+                <Property Name="functional_req" Type="Edm.String" MaxLength="1333" sap:label="Project Requirements" sap:heading=""/>
+                <Property Name="non_funct_req" Type="Edm.String" MaxLength="1333" sap:label="Project Requirements" sap:heading=""/>
+            </EntityType>
+            <EntityType Name="EmployeeProjectsType" sap:label="Projection view for employee projects" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="proj_id"/>
+                    <PropertyRef Name="emp_id"/>
+                </Key>
+                <Property Name="proj_id" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="emp_id" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+            </EntityType>
+            <EntityType Name="ReactivateTrainingsType" sap:label="Projection view to reactivate training" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="training_id"/>
+                </Key>
+                <Property Name="training_id" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="name" Type="Edm.String" MaxLength="50" sap:label="Data Elemt for name" sap:heading=""/>
+                <Property Name="start_date" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Date" sap:quickinfo="DATE data element"/>
+                <Property Name="end_date" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Date" sap:quickinfo="DATE data element"/>
+                <Property Name="description" Type="Edm.String" MaxLength="1333" sap:label="DESCRIPTION" sap:quickinfo="Description Data Element"/>
+            </EntityType>
+            <EntityType Name="SearchCertificationsCrossBUType" sap:label="Projection searching certif in BU" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="id"/>
+                    <PropertyRef Name="employee_id"/>
+                </Key>
+                <Property Name="id" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="employee_id" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="buid" Type="Edm.String" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="Certification_Name" Type="Edm.String" MaxLength="100" sap:label="Certification Name"/>
+                <Property Name="Certification_Description" Type="Edm.String" MaxLength="1333" sap:label="Certification Description" sap:quickinfo="Description Data Element"/>
+                <Property Name="ObtainingDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Obtaining Date" sap:quickinfo="DATE data element"/>
+                <Property Name="Employee_Name" Type="Edm.String" MaxLength="101" sap:label="Employee Name"/>
+                <Property Name="Employee_Email" Type="Edm.String" MaxLength="50" sap:label="Email" sap:quickinfo="Email of an Employee"/>
+                <Property Name="EmpLevel" Type="Edm.String" MaxLength="60" sap:label="EmployeeSeniority" sap:quickinfo="Short Text for Fixed Values"/>
+                <Property Name="Employee_Phone" Type="Edm.String" MaxLength="15" sap:display-format="UpperCase" sap:label="Phone Number" sap:quickinfo="Phone Number Data Element"/>
+                <Property Name="Employee_Position" Type="Edm.String" MaxLength="30" sap:label="Employee Position" sap:quickinfo="position"/>
+                <Property Name="Employee_Team" Type="Edm.String" MaxLength="50" sap:label=" Employee Team" sap:quickinfo="Team of an Employee"/>
+                <Property Name="Employee_Address" Type="Edm.String" MaxLength="50" sap:label="Employee Address" sap:quickinfo="Address Data Element"/>
+                <Property Name="Bu_Name" Type="Edm.String" MaxLength="50" sap:label="Business Unit Name"/>
+            </EntityType>
+            <EntityType Name="SearchSkillsCrossBUType" sap:label="Search a skills cross BU" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="id_skill"/>
+                    <PropertyRef Name="id_employee"/>
+                </Key>
+                <Property Name="id_skill" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="id_employee" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="Skill_Name" Type="Edm.String" MaxLength="30" sap:label="Skill Name" sap:quickinfo="Skill name data element"/>
+                <Property Name="Skill_Level" Type="Edm.Int16" sap:label="Skill Level" sap:quickinfo="Skill level"/>
+                <Property Name="Quality" Type="Edm.Int16" sap:label="Skill Quality" sap:quickinfo="Skill quality"/>
+                <Property Name="Skill_Type" Type="Edm.String" MaxLength="60" sap:label="Skill Type" sap:quickinfo="Short Text for Fixed Values"/>
+                <Property Name="employee_name" Type="Edm.String" MaxLength="101" sap:label="Employee Name"/>
+                <Property Name="EmpEmail" Type="Edm.String" MaxLength="50" sap:label="Email" sap:quickinfo="Email of an Employee"/>
+                <Property Name="empl_phone_no" Type="Edm.String" MaxLength="15" sap:display-format="UpperCase" sap:label="Phone Number" sap:quickinfo="Phone Number Data Element"/>
+                <Property Name="EmpPosition" Type="Edm.String" MaxLength="30" sap:label="Employee Position" sap:quickinfo="position"/>
+                <Property Name="Text" Type="Edm.String" MaxLength="60" sap:label="Employee Level" sap:quickinfo="Short Text for Fixed Values"/>
+                <Property Name="EmpTeam" Type="Edm.String" MaxLength="50" sap:label=" Employee Team" sap:quickinfo="Team of an Employee"/>
+                <Property Name="EmpAddress" Type="Edm.String" MaxLength="50" sap:label="Employee Address" sap:quickinfo="Address Data Element"/>
+                <Property Name="name" Type="Edm.String" MaxLength="50" sap:label="Business Unit Name"/>
+                <Property Name="buid" Type="Edm.String" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+            </EntityType>
+            <EntityType Name="SearchTrainingsCrossBUType" sap:label="Projection for searching trainings in BU" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="training_id"/>
+                    <PropertyRef Name="employee_id"/>
+                </Key>
+                <Property Name="training_id" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="employee_id" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="buid" Type="Edm.String" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="Training_Name" Type="Edm.String" MaxLength="50" sap:label="Training Name" sap:quickinfo="Data Elemt for name"/>
+                <Property Name="Training_Description" Type="Edm.String" MaxLength="1333" sap:label="Training Description" sap:quickinfo="Description Data Element"/>
+                <Property Name="Training_Start" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Training Start Date" sap:quickinfo="DATE data element"/>
+                <Property Name="Training_End" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Training End Date" sap:quickinfo="DATE data element"/>
+                <Property Name="Employee_Name" Type="Edm.String" MaxLength="101" sap:label="Employee Name"/>
+                <Property Name="Employee_Email" Type="Edm.String" MaxLength="50" sap:label="Email" sap:quickinfo="Email of an Employee"/>
+                <Property Name="Employee_Level" Type="Edm.String" MaxLength="60" sap:label="Employee Seniority" sap:quickinfo="Short Text for Fixed Values"/>
+                <Property Name="Employee_Phone" Type="Edm.String" MaxLength="15" sap:display-format="UpperCase" sap:label="Phone Number" sap:quickinfo="Phone Number Data Element"/>
+                <Property Name="Employee_Position" Type="Edm.String" MaxLength="30" sap:label="Employee Position" sap:quickinfo="position"/>
+                <Property Name="Employee_Team" Type="Edm.String" MaxLength="50" sap:label=" Employee Team" sap:quickinfo="Team of an Employee"/>
+                <Property Name="Employee_Address" Type="Edm.String" MaxLength="50" sap:label="Employee Address" sap:quickinfo="Address Data Element"/>
+                <Property Name="Bu_Name" Type="Edm.String" MaxLength="50" sap:label="Business Unit"/>
+            </EntityType>
+            <EntityType Name="SkilledEmployeeType" sap:label="Projection view for skilled employee" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="employee_id"/>
+                    <PropertyRef Name="buid"/>
+                </Key>
+                <Property Name="employee_id" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="buid" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="Employee_Name" Type="Edm.String" MaxLength="101" sap:label="Employee Name"/>
+                <Property Name="emp_position" Type="Edm.String" MaxLength="30" sap:label="Position" sap:quickinfo="position"/>
+                <Property Name="empLevel" Type="Edm.String" MaxLength="60" sap:label="Level" sap:quickinfo="Short Text for Fixed Values"/>
+                <Property Name="team" Type="Edm.String" MaxLength="50" sap:label="Team" sap:quickinfo="Team of an Employee"/>
+                <Property Name="email" Type="Edm.String" MaxLength="50" sap:label="Email" sap:quickinfo="Email of an Employee"/>
+                <Property Name="emQual" Type="Edm.String" MaxLength="60" sap:label="Educational Qualification" sap:quickinfo="Short Text for Fixed Values"/>
+                <Property Name="BU_Name" Type="Edm.String" MaxLength="50" sap:label="Business Unit" sap:quickinfo="Data Elemt for name"/>
+            </EntityType>
+            <EntityType Name="SkillsValuesType" sap:label="Projection view to get all skills values" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="id_skill"/>
+                </Key>
+                <Property Name="id_skill" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="SkillType" Type="Edm.String" MaxLength="11" sap:label="Skill type data element" sap:heading=""/>
+                <Property Name="SkillName" Type="Edm.String" MaxLength="30" sap:label="Skill name data element" sap:heading=""/>
+            </EntityType>
+            <EntityType Name="SkillLanguageType" sap:label="Projection view display language skills" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="id_skill"/>
+                    <PropertyRef Name="id_employee"/>
+                </Key>
+                <Property Name="id_skill" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="id_employee" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="SkillName" Type="Edm.String" MaxLength="30" sap:label="Skill name data element"/>
+                <Property Name="SkillType" Type="Edm.String" MaxLength="11" sap:label="Skill type data element"/>
+                <Property Name="SkillLevel" Type="Edm.Int16" sap:label="Skill level" sap:heading=""/>
+                <Property Name="SkillQuality" Type="Edm.Int16" sap:label="Skill quality" sap:heading=""/>
+                <NavigationProperty Name="to_EmployeeList" Relationship="cds_zsm_ui_c_skillmatcher.assoc_5B51C4193954E0EDCF25BD6A8FFF9861" FromRole="FromRole_assoc_5B51C4193954E0EDCF25BD6A8FFF9861" ToRole="ToRole_assoc_5B51C4193954E0EDCF25BD6A8FFF9861"/>
+            </EntityType>
+            <EntityType Name="SkillManagementType" sap:label="Projection view display management skill" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="id_skill"/>
+                    <PropertyRef Name="id_employee"/>
+                </Key>
+                <Property Name="id_skill" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="id_employee" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="SkillName" Type="Edm.String" MaxLength="30" sap:label="Skill name data element"/>
+                <Property Name="SkillType" Type="Edm.String" MaxLength="11" sap:label="Skill type data element"/>
+                <Property Name="SkillLevel" Type="Edm.Int16" sap:label="Skill level" sap:heading=""/>
+                <Property Name="SkillQuality" Type="Edm.Int16" sap:label="Skill quality" sap:heading=""/>
+                <NavigationProperty Name="to_EmployeeList" Relationship="cds_zsm_ui_c_skillmatcher.assoc_1EB23C7D6FACEEA0091054896FE10E8F" FromRole="FromRole_assoc_1EB23C7D6FACEEA0091054896FE10E8F" ToRole="ToRole_assoc_1EB23C7D6FACEEA0091054896FE10E8F"/>
+            </EntityType>
+            <EntityType Name="SkillPeopleType" sap:label="Projection view to display people skills" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="id_skill"/>
+                    <PropertyRef Name="id_employee"/>
+                </Key>
+                <Property Name="id_skill" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="id_employee" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="SkillName" Type="Edm.String" MaxLength="30" sap:label="Skill name data element"/>
+                <Property Name="SkillType" Type="Edm.String" MaxLength="11" sap:label="Skill type data element"/>
+                <Property Name="SkillLevel" Type="Edm.Int16" sap:label="Skill level" sap:heading=""/>
+                <Property Name="SkillQuality" Type="Edm.Int16" sap:label="Skill quality" sap:heading=""/>
+                <NavigationProperty Name="to_EmployeeList" Relationship="cds_zsm_ui_c_skillmatcher.assoc_6822F7D679A9F30D4F6BA08EB415D8E3" FromRole="FromRole_assoc_6822F7D679A9F30D4F6BA08EB415D8E3" ToRole="ToRole_assoc_6822F7D679A9F30D4F6BA08EB415D8E3"/>
+            </EntityType>
+            <EntityType Name="SkillTechnicalType" sap:label="Projection view display technical skills" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="id_skill"/>
+                    <PropertyRef Name="id_employee"/>
+                </Key>
+                <Property Name="id_skill" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="id_employee" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="SkillName" Type="Edm.String" MaxLength="30" sap:label="Skill name data element"/>
+                <Property Name="SkillType" Type="Edm.String" MaxLength="11" sap:label="Skill type data element"/>
+                <Property Name="SkillLevel" Type="Edm.Int16" sap:label="Skill level" sap:heading=""/>
+                <Property Name="SkillQuality" Type="Edm.Int16" sap:label="Skill quality" sap:heading=""/>
+                <NavigationProperty Name="to_EmployeeList" Relationship="cds_zsm_ui_c_skillmatcher.assoc_27F0AB5D3C5D41773F3A68787CB1043B" FromRole="FromRole_assoc_27F0AB5D3C5D41773F3A68787CB1043B" ToRole="ToRole_assoc_27F0AB5D3C5D41773F3A68787CB1043B"/>
+            </EntityType>
+            <EntityType Name="TrainingsAllType" sap:label="Projection view for trainings" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="TrainingID"/>
+                    <PropertyRef Name="EmployeeID"/>
+                </Key>
+                <Property Name="TrainingID" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="EmployeeID" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="Name" Type="Edm.String" MaxLength="50" sap:label="Data Elemt for name"/>
+                <Property Name="Description" Type="Edm.String" MaxLength="1333" sap:label="DESCRIPTION"/>
+                <Property Name="StartDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Date"/>
+                <Property Name="EndtDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Date"/>
+                <NavigationProperty Name="to_EmployeeList" Relationship="cds_zsm_ui_c_skillmatcher.assoc_8E475B9E4EA52345E7C11924F10C88A1" FromRole="FromRole_assoc_8E475B9E4EA52345E7C11924F10C88A1" ToRole="ToRole_assoc_8E475B9E4EA52345E7C11924F10C88A1"/>
+            </EntityType>
+            <EntityType Name="NewTrainingType" sap:label="Projection view for employee trainings" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="training_id"/>
+                </Key>
+                <Property Name="training_id" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="name" Type="Edm.String" MaxLength="50" sap:label="Data Elemt for name" sap:heading=""/>
+                <Property Name="start_date" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Date" sap:quickinfo="DATE data element"/>
+                <Property Name="end_date" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Date" sap:quickinfo="DATE data element"/>
+                <Property Name="description" Type="Edm.String" MaxLength="1333" sap:label="DESCRIPTION" sap:quickinfo="Description Data Element"/>
+            </EntityType>
+            <EntityType Name="zsm_I_BuType" sap:label="Data model for bussiness units list" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="bu_id"/>
+                </Key>
+                <Property Name="bu_id" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="id" sap:quickinfo="Data Elemt for id"/>
+                <Property Name="name" Type="Edm.String" MaxLength="50" sap:label="Data Elemt for name" sap:heading=""/>
+            </EntityType>
+            <EntityType Name="EmpQualType" sap:label="Data model for educational qualifications" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="DomainName"/>
+                    <PropertyRef Name="Low"/>
+                </Key>
+                <Property Name="DomainName" Type="Edm.String" Nullable="false" MaxLength="30" sap:display-format="UpperCase" sap:label="Domain name"/>
+                <Property Name="Low" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Status" sap:quickinfo="Values for Domains: Single Value / Upper Limit"/>
+                <Property Name="Text" Type="Edm.String" MaxLength="60" sap:label="Short Descript." sap:quickinfo="Short Text for Fixed Values"/>
+            </EntityType>
+            <EntityType Name="EmpGenderType" sap:label="Data model for gender" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="DomainName"/>
+                    <PropertyRef Name="Low"/>
+                </Key>
+                <Property Name="DomainName" Type="Edm.String" Nullable="false" MaxLength="30" sap:display-format="UpperCase" sap:label="Domain name"/>
+                <Property Name="Low" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Status" sap:quickinfo="Values for Domains: Single Value / Upper Limit"/>
+                <Property Name="Text" Type="Edm.String" MaxLength="60" sap:label="Short Descript." sap:quickinfo="Short Text for Fixed Values"/>
+            </EntityType>
+            <EntityType Name="EmpLevelType" sap:label="Data model for employee level" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="DomainName"/>
+                    <PropertyRef Name="Low"/>
+                </Key>
+                <Property Name="DomainName" Type="Edm.String" Nullable="false" MaxLength="30" sap:display-format="UpperCase" sap:label="Domain name"/>
+                <Property Name="Low" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Status" sap:quickinfo="Values for Domains: Single Value / Upper Limit"/>
+                <Property Name="Text" Type="Edm.String" MaxLength="60" sap:label="Short Descript." sap:quickinfo="Short Text for Fixed Values"/>
+            </EntityType>
+            <EntityType Name="ServiceSkillTypeType" sap:label="Data model for skill type" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="DomainName"/>
+                    <PropertyRef Name="Status"/>
+                    <PropertyRef Name="Low"/>
+                </Key>
+                <Property Name="DomainName" Type="Edm.String" Nullable="false" MaxLength="30" sap:display-format="UpperCase" sap:label="Domain name"/>
+                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="1" sap:display-format="UpperCase" sap:label="Activation Status" sap:quickinfo="Activation State of Repository Object"/>
+                <Property Name="Low" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Status" sap:quickinfo="Values for Domains: Single Value / Upper Limit"/>
+                <Property Name="Text" Type="Edm.String" MaxLength="60" sap:label="Short Descript." sap:quickinfo="Short Text for Fixed Values"/>
+            </EntityType>
+            <EntityType Name="EmpStatusType" sap:label="Data model for marital status" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="DomainName"/>
+                    <PropertyRef Name="Status"/>
+                    <PropertyRef Name="Low"/>
+                </Key>
+                <Property Name="DomainName" Type="Edm.String" Nullable="false" MaxLength="30" sap:display-format="UpperCase" sap:label="Domain name"/>
+                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="1" sap:display-format="UpperCase" sap:label="Activation Status" sap:quickinfo="Activation State of Repository Object"/>
+                <Property Name="Low" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Status" sap:quickinfo="Values for Domains: Single Value / Upper Limit"/>
+                <Property Name="Text" Type="Edm.String" MaxLength="60" sap:label="Short Descript." sap:quickinfo="Short Text for Fixed Values"/>
+            </EntityType>
+            <Association Name="assoc_7F067EAEDB95E20E9834246AD241A11B" sap:content-version="1">
+                <End Type="cds_zsm_ui_c_skillmatcher.CertificatesAllType" Multiplicity="1" Role="FromRole_assoc_7F067EAEDB95E20E9834246AD241A11B"/>
+                <End Type="cds_zsm_ui_c_skillmatcher.EmployeeType" Multiplicity="1" Role="ToRole_assoc_7F067EAEDB95E20E9834246AD241A11B"/>
+            </Association>
+            <Association Name="assoc_3B102CFEDE81D05EEC0978A0C3460D9B" sap:content-version="1">
+                <End Type="cds_zsm_ui_c_skillmatcher.ProjLiveType" Multiplicity="1" Role="FromRole_assoc_3B102CFEDE81D05EEC0978A0C3460D9B"/>
+                <End Type="cds_zsm_ui_c_skillmatcher.EmployeeType" Multiplicity="1" Role="ToRole_assoc_3B102CFEDE81D05EEC0978A0C3460D9B"/>
+            </Association>
+            <Association Name="assoc_5B51C4193954E0EDCF25BD6A8FFF9861" sap:content-version="1">
+                <End Type="cds_zsm_ui_c_skillmatcher.SkillLanguageType" Multiplicity="1" Role="FromRole_assoc_5B51C4193954E0EDCF25BD6A8FFF9861"/>
+                <End Type="cds_zsm_ui_c_skillmatcher.EmployeeType" Multiplicity="1" Role="ToRole_assoc_5B51C4193954E0EDCF25BD6A8FFF9861"/>
+            </Association>
+            <Association Name="assoc_8C6E910829E52E6B5CD9CF2092AC3098" sap:content-version="1">
+                <End Type="cds_zsm_ui_c_skillmatcher.DispProjType" Multiplicity="1" Role="FromRole_assoc_8C6E910829E52E6B5CD9CF2092AC3098"/>
+                <End Type="cds_zsm_ui_c_skillmatcher.EmployeeType" Multiplicity="1" Role="ToRole_assoc_8C6E910829E52E6B5CD9CF2092AC3098"/>
+            </Association>
+            <Association Name="assoc_5FB6917152C91BF71BA7493246C1A180" sap:content-version="1">
+                <End Type="cds_zsm_ui_c_skillmatcher.first_pageType" Multiplicity="1" Role="FromRole_assoc_5FB6917152C91BF71BA7493246C1A180">
+                    <OnDelete Action="Cascade"/>
+                </End>
+                <End Type="cds_zsm_ui_c_skillmatcher.EmployeeType" Multiplicity="*" Role="ToRole_assoc_5FB6917152C91BF71BA7493246C1A180"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_assoc_5FB6917152C91BF71BA7493246C1A180">
+                        <PropertyRef Name="bu_id"/>
+                    </Principal>
+                    <Dependent Role="ToRole_assoc_5FB6917152C91BF71BA7493246C1A180">
+                        <PropertyRef Name="buid"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="assoc_1827219D5195A89204A54A8B7BEE78D0" sap:content-version="1">
+                <End Type="cds_zsm_ui_c_skillmatcher.DetailsEmpType" Multiplicity="1" Role="FromRole_assoc_1827219D5195A89204A54A8B7BEE78D0"/>
+                <End Type="cds_zsm_ui_c_skillmatcher.EmpGenderType" Multiplicity="1" Role="ToRole_assoc_1827219D5195A89204A54A8B7BEE78D0"/>
+            </Association>
+            <Association Name="assoc_9A735CDF64382ACAE3481A8953FFE00A" sap:content-version="1">
+                <End Type="cds_zsm_ui_c_skillmatcher.DetailsEmpType" Multiplicity="1" Role="FromRole_assoc_9A735CDF64382ACAE3481A8953FFE00A"/>
+                <End Type="cds_zsm_ui_c_skillmatcher.EmpLevelType" Multiplicity="1" Role="ToRole_assoc_9A735CDF64382ACAE3481A8953FFE00A"/>
+            </Association>
+            <Association Name="assoc_15835D4F896E9BB549152E54BA61A588" sap:content-version="1">
+                <End Type="cds_zsm_ui_c_skillmatcher.DetailsEmpType" Multiplicity="1" Role="FromRole_assoc_15835D4F896E9BB549152E54BA61A588"/>
+                <End Type="cds_zsm_ui_c_skillmatcher.EmployeeType" Multiplicity="1" Role="ToRole_assoc_15835D4F896E9BB549152E54BA61A588"/>
+            </Association>
+            <Association Name="assoc_7DED8D7B72E4BA663163D9EA5450E382" sap:content-version="1">
+                <End Type="cds_zsm_ui_c_skillmatcher.DetailsEmpType" Multiplicity="1" Role="FromRole_assoc_7DED8D7B72E4BA663163D9EA5450E382"/>
+                <End Type="cds_zsm_ui_c_skillmatcher.EmpQualType" Multiplicity="1" Role="ToRole_assoc_7DED8D7B72E4BA663163D9EA5450E382"/>
+            </Association>
+            <Association Name="assoc_33AE6536DF4B96C197BCBCAA327C1A3F" sap:content-version="1">
+                <End Type="cds_zsm_ui_c_skillmatcher.DetailsEmpType" Multiplicity="1" Role="FromRole_assoc_33AE6536DF4B96C197BCBCAA327C1A3F"/>
+                <End Type="cds_zsm_ui_c_skillmatcher.EmpStatusType" Multiplicity="1" Role="ToRole_assoc_33AE6536DF4B96C197BCBCAA327C1A3F"/>
+            </Association>
+            <Association Name="assoc_27F0AB5D3C5D41773F3A68787CB1043B" sap:content-version="1">
+                <End Type="cds_zsm_ui_c_skillmatcher.SkillTechnicalType" Multiplicity="1" Role="FromRole_assoc_27F0AB5D3C5D41773F3A68787CB1043B"/>
+                <End Type="cds_zsm_ui_c_skillmatcher.EmployeeType" Multiplicity="1" Role="ToRole_assoc_27F0AB5D3C5D41773F3A68787CB1043B"/>
+            </Association>
+            <Association Name="assoc_40B30A374DD605E427B8A73D3876CAB0" sap:content-version="1">
+                <End Type="cds_zsm_ui_c_skillmatcher.EmployeeType" Multiplicity="1" Role="FromRole_assoc_40B30A374DD605E427B8A73D3876CAB0"/>
+                <End Type="cds_zsm_ui_c_skillmatcher.first_pageType" Multiplicity="1" Role="ToRole_assoc_40B30A374DD605E427B8A73D3876CAB0"/>
+            </Association>
+            <Association Name="assoc_1BE7924F04B4D00ED7E9292C1B3D4D37" sap:content-version="1">
+                <End Type="cds_zsm_ui_c_skillmatcher.EmployeeType" Multiplicity="1" Role="FromRole_assoc_1BE7924F04B4D00ED7E9292C1B3D4D37">
+                    <OnDelete Action="Cascade"/>
+                </End>
+                <End Type="cds_zsm_ui_c_skillmatcher.CertificatesAllType" Multiplicity="*" Role="ToRole_assoc_1BE7924F04B4D00ED7E9292C1B3D4D37"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_assoc_1BE7924F04B4D00ED7E9292C1B3D4D37">
+                        <PropertyRef Name="employee_id"/>
+                    </Principal>
+                    <Dependent Role="ToRole_assoc_1BE7924F04B4D00ED7E9292C1B3D4D37">
+                        <PropertyRef Name="employee_id"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="assoc_FBC0A5E04A91057359541409E784E35A" sap:content-version="1">
+                <End Type="cds_zsm_ui_c_skillmatcher.EmployeeType" Multiplicity="1" Role="FromRole_assoc_FBC0A5E04A91057359541409E784E35A">
+                    <OnDelete Action="Cascade"/>
+                </End>
+                <End Type="cds_zsm_ui_c_skillmatcher.CompProjType" Multiplicity="*" Role="ToRole_assoc_FBC0A5E04A91057359541409E784E35A"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_assoc_FBC0A5E04A91057359541409E784E35A">
+                        <PropertyRef Name="employee_id"/>
+                    </Principal>
+                    <Dependent Role="ToRole_assoc_FBC0A5E04A91057359541409E784E35A">
+                        <PropertyRef Name="emp_id"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="assoc_5B4329CC5EEEC24F3834D53B98C2A901" sap:content-version="1">
+                <End Type="cds_zsm_ui_c_skillmatcher.EmployeeType" Multiplicity="1" Role="FromRole_assoc_5B4329CC5EEEC24F3834D53B98C2A901">
+                    <OnDelete Action="Cascade"/>
+                </End>
+                <End Type="cds_zsm_ui_c_skillmatcher.CompTrainingsType" Multiplicity="*" Role="ToRole_assoc_5B4329CC5EEEC24F3834D53B98C2A901"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_assoc_5B4329CC5EEEC24F3834D53B98C2A901">
+                        <PropertyRef Name="employee_id"/>
+                    </Principal>
+                    <Dependent Role="ToRole_assoc_5B4329CC5EEEC24F3834D53B98C2A901">
+                        <PropertyRef Name="employee_id"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="assoc_96243816E8A000EE99D1E0349F43E2E6" sap:content-version="1">
+                <End Type="cds_zsm_ui_c_skillmatcher.EmployeeType" Multiplicity="1" Role="FromRole_assoc_96243816E8A000EE99D1E0349F43E2E6">
+                    <OnDelete Action="Cascade"/>
+                </End>
+                <End Type="cds_zsm_ui_c_skillmatcher.DetailsEmpType" Multiplicity="*" Role="ToRole_assoc_96243816E8A000EE99D1E0349F43E2E6"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_assoc_96243816E8A000EE99D1E0349F43E2E6">
+                        <PropertyRef Name="employee_id"/>
+                    </Principal>
+                    <Dependent Role="ToRole_assoc_96243816E8A000EE99D1E0349F43E2E6">
+                        <PropertyRef Name="employee_id"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="assoc_D1BD2D0D02319180230039C1AA418AE2" sap:content-version="1">
+                <End Type="cds_zsm_ui_c_skillmatcher.EmployeeType" Multiplicity="1" Role="FromRole_assoc_D1BD2D0D02319180230039C1AA418AE2">
+                    <OnDelete Action="Cascade"/>
+                </End>
+                <End Type="cds_zsm_ui_c_skillmatcher.DispProjType" Multiplicity="*" Role="ToRole_assoc_D1BD2D0D02319180230039C1AA418AE2"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_assoc_D1BD2D0D02319180230039C1AA418AE2">
+                        <PropertyRef Name="employee_id"/>
+                    </Principal>
+                    <Dependent Role="ToRole_assoc_D1BD2D0D02319180230039C1AA418AE2">
+                        <PropertyRef Name="rv_employee_id"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="assoc_58A45DC774C03F18230EA9DD05944EB8" sap:content-version="1">
+                <End Type="cds_zsm_ui_c_skillmatcher.EmployeeType" Multiplicity="1" Role="FromRole_assoc_58A45DC774C03F18230EA9DD05944EB8"/>
+                <End Type="cds_zsm_ui_c_skillmatcher.EmpLevelType" Multiplicity="1" Role="ToRole_assoc_58A45DC774C03F18230EA9DD05944EB8"/>
+            </Association>
+            <Association Name="assoc_8CC5126952246E3A3A44958FC3EBD760" sap:content-version="1">
+                <End Type="cds_zsm_ui_c_skillmatcher.EmployeeType" Multiplicity="1" Role="FromRole_assoc_8CC5126952246E3A3A44958FC3EBD760">
+                    <OnDelete Action="Cascade"/>
+                </End>
+                <End Type="cds_zsm_ui_c_skillmatcher.ProjLiveType" Multiplicity="*" Role="ToRole_assoc_8CC5126952246E3A3A44958FC3EBD760"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_assoc_8CC5126952246E3A3A44958FC3EBD760">
+                        <PropertyRef Name="employee_id"/>
+                    </Principal>
+                    <Dependent Role="ToRole_assoc_8CC5126952246E3A3A44958FC3EBD760">
+                        <PropertyRef Name="emp_id"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="assoc_B9291493AF8925E9A27BB23FEEE78AA7" sap:content-version="1">
+                <End Type="cds_zsm_ui_c_skillmatcher.EmployeeType" Multiplicity="1" Role="FromRole_assoc_B9291493AF8925E9A27BB23FEEE78AA7">
+                    <OnDelete Action="Cascade"/>
+                </End>
+                <End Type="cds_zsm_ui_c_skillmatcher.SkillLanguageType" Multiplicity="*" Role="ToRole_assoc_B9291493AF8925E9A27BB23FEEE78AA7"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_assoc_B9291493AF8925E9A27BB23FEEE78AA7">
+                        <PropertyRef Name="employee_id"/>
+                    </Principal>
+                    <Dependent Role="ToRole_assoc_B9291493AF8925E9A27BB23FEEE78AA7">
+                        <PropertyRef Name="id_employee"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="assoc_7F7A85ABE4B3471171AF6564A42AAD27" sap:content-version="1">
+                <End Type="cds_zsm_ui_c_skillmatcher.EmployeeType" Multiplicity="1" Role="FromRole_assoc_7F7A85ABE4B3471171AF6564A42AAD27">
+                    <OnDelete Action="Cascade"/>
+                </End>
+                <End Type="cds_zsm_ui_c_skillmatcher.SkillManagementType" Multiplicity="*" Role="ToRole_assoc_7F7A85ABE4B3471171AF6564A42AAD27"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_assoc_7F7A85ABE4B3471171AF6564A42AAD27">
+                        <PropertyRef Name="employee_id"/>
+                    </Principal>
+                    <Dependent Role="ToRole_assoc_7F7A85ABE4B3471171AF6564A42AAD27">
+                        <PropertyRef Name="id_employee"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="assoc_8088A7D061B91B7E6901F1C6A0C81C25" sap:content-version="1">
+                <End Type="cds_zsm_ui_c_skillmatcher.EmployeeType" Multiplicity="1" Role="FromRole_assoc_8088A7D061B91B7E6901F1C6A0C81C25">
+                    <OnDelete Action="Cascade"/>
+                </End>
+                <End Type="cds_zsm_ui_c_skillmatcher.SkillPeopleType" Multiplicity="*" Role="ToRole_assoc_8088A7D061B91B7E6901F1C6A0C81C25"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_assoc_8088A7D061B91B7E6901F1C6A0C81C25">
+                        <PropertyRef Name="employee_id"/>
+                    </Principal>
+                    <Dependent Role="ToRole_assoc_8088A7D061B91B7E6901F1C6A0C81C25">
+                        <PropertyRef Name="id_employee"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="assoc_F28CB34E5EDE551DB6689E16307022CC" sap:content-version="1">
+                <End Type="cds_zsm_ui_c_skillmatcher.EmployeeType" Multiplicity="1" Role="FromRole_assoc_F28CB34E5EDE551DB6689E16307022CC">
+                    <OnDelete Action="Cascade"/>
+                </End>
+                <End Type="cds_zsm_ui_c_skillmatcher.SkillTechnicalType" Multiplicity="*" Role="ToRole_assoc_F28CB34E5EDE551DB6689E16307022CC"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_assoc_F28CB34E5EDE551DB6689E16307022CC">
+                        <PropertyRef Name="employee_id"/>
+                    </Principal>
+                    <Dependent Role="ToRole_assoc_F28CB34E5EDE551DB6689E16307022CC">
+                        <PropertyRef Name="id_employee"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="assoc_DD6BB0EE39001235CF824D6B8CA67A88" sap:content-version="1">
+                <End Type="cds_zsm_ui_c_skillmatcher.EmployeeType" Multiplicity="1" Role="FromRole_assoc_DD6BB0EE39001235CF824D6B8CA67A88">
+                    <OnDelete Action="Cascade"/>
+                </End>
+                <End Type="cds_zsm_ui_c_skillmatcher.TrainingsAllType" Multiplicity="*" Role="ToRole_assoc_DD6BB0EE39001235CF824D6B8CA67A88"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_assoc_DD6BB0EE39001235CF824D6B8CA67A88">
+                        <PropertyRef Name="employee_id"/>
+                    </Principal>
+                    <Dependent Role="ToRole_assoc_DD6BB0EE39001235CF824D6B8CA67A88">
+                        <PropertyRef Name="EmployeeID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="assoc_1EB23C7D6FACEEA0091054896FE10E8F" sap:content-version="1">
+                <End Type="cds_zsm_ui_c_skillmatcher.SkillManagementType" Multiplicity="1" Role="FromRole_assoc_1EB23C7D6FACEEA0091054896FE10E8F"/>
+                <End Type="cds_zsm_ui_c_skillmatcher.EmployeeType" Multiplicity="1" Role="ToRole_assoc_1EB23C7D6FACEEA0091054896FE10E8F"/>
+            </Association>
+            <Association Name="assoc_442FED0326705DFA18D6A5248E4F3865" sap:content-version="1">
+                <End Type="cds_zsm_ui_c_skillmatcher.CompTrainingsType" Multiplicity="1" Role="FromRole_assoc_442FED0326705DFA18D6A5248E4F3865"/>
+                <End Type="cds_zsm_ui_c_skillmatcher.EmployeeType" Multiplicity="1" Role="ToRole_assoc_442FED0326705DFA18D6A5248E4F3865"/>
+            </Association>
+            <Association Name="assoc_6822F7D679A9F30D4F6BA08EB415D8E3" sap:content-version="1">
+                <End Type="cds_zsm_ui_c_skillmatcher.SkillPeopleType" Multiplicity="1" Role="FromRole_assoc_6822F7D679A9F30D4F6BA08EB415D8E3"/>
+                <End Type="cds_zsm_ui_c_skillmatcher.EmployeeType" Multiplicity="1" Role="ToRole_assoc_6822F7D679A9F30D4F6BA08EB415D8E3"/>
+            </Association>
+            <Association Name="assoc_623556D74CB95732A86F6AA888DAE6FA" sap:content-version="1">
+                <End Type="cds_zsm_ui_c_skillmatcher.CompProjType" Multiplicity="1" Role="FromRole_assoc_623556D74CB95732A86F6AA888DAE6FA"/>
+                <End Type="cds_zsm_ui_c_skillmatcher.EmployeeType" Multiplicity="1" Role="ToRole_assoc_623556D74CB95732A86F6AA888DAE6FA"/>
+            </Association>
+            <Association Name="assoc_8E475B9E4EA52345E7C11924F10C88A1" sap:content-version="1">
+                <End Type="cds_zsm_ui_c_skillmatcher.TrainingsAllType" Multiplicity="1" Role="FromRole_assoc_8E475B9E4EA52345E7C11924F10C88A1"/>
+                <End Type="cds_zsm_ui_c_skillmatcher.EmployeeType" Multiplicity="1" Role="ToRole_assoc_8E475B9E4EA52345E7C11924F10C88A1"/>
+            </Association>
+            <EntityContainer Name="cds_zsm_ui_c_skillmatcher_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="first_page" EntityType="cds_zsm_ui_c_skillmatcher.first_pageType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="CertificatesAll" EntityType="cds_zsm_ui_c_skillmatcher.CertificatesAllType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="NewCertification" EntityType="cds_zsm_ui_c_skillmatcher.NewCertificationType" sap:content-version="1"/>
+                <EntitySet Name="CompProj" EntityType="cds_zsm_ui_c_skillmatcher.CompProjType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="CompTrainings" EntityType="cds_zsm_ui_c_skillmatcher.CompTrainingsType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="DispProj" EntityType="cds_zsm_ui_c_skillmatcher.DispProjType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="Employee" EntityType="cds_zsm_ui_c_skillmatcher.EmployeeType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="DetailsEmp" EntityType="cds_zsm_ui_c_skillmatcher.DetailsEmpType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ProjLive" EntityType="cds_zsm_ui_c_skillmatcher.ProjLiveType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="NewEmployee" EntityType="cds_zsm_ui_c_skillmatcher.NewEmployeeType" sap:content-version="1"/>
+                <EntitySet Name="NewSkill" EntityType="cds_zsm_ui_c_skillmatcher.NewSkillType" sap:content-version="1"/>
+                <EntitySet Name="NewSkillEmployee" EntityType="cds_zsm_ui_c_skillmatcher.NewSkillEmployeeType" sap:content-version="1"/>
+                <EntitySet Name="NewTrainingEmployee" EntityType="cds_zsm_ui_c_skillmatcher.NewTrainingEmployeeType" sap:content-version="1"/>
+                <EntitySet Name="OrderedSkillsEmp" EntityType="cds_zsm_ui_c_skillmatcher.OrderedSkillsEmpType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="SearchProjectsCrossBU" EntityType="cds_zsm_ui_c_skillmatcher.SearchProjectsCrossBUType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ProjectsOverview" EntityType="cds_zsm_ui_c_skillmatcher.ProjectsOverviewType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="NewProject" EntityType="cds_zsm_ui_c_skillmatcher.NewProjectType" sap:content-version="1"/>
+                <EntitySet Name="NewProjectSkills" EntityType="cds_zsm_ui_c_skillmatcher.NewProjectSkillsType" sap:content-version="1"/>
+                <EntitySet Name="ProjDetails" EntityType="cds_zsm_ui_c_skillmatcher.ProjDetailsType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="EmployeeProjects" EntityType="cds_zsm_ui_c_skillmatcher.EmployeeProjectsType" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ReactivateTrainings" EntityType="cds_zsm_ui_c_skillmatcher.ReactivateTrainingsType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="SearchCertificationsCrossBU" EntityType="cds_zsm_ui_c_skillmatcher.SearchCertificationsCrossBUType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="SearchSkillsCrossBU" EntityType="cds_zsm_ui_c_skillmatcher.SearchSkillsCrossBUType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="SearchTrainingsCrossBU" EntityType="cds_zsm_ui_c_skillmatcher.SearchTrainingsCrossBUType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="SkilledEmployee" EntityType="cds_zsm_ui_c_skillmatcher.SkilledEmployeeType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="SkillsValues" EntityType="cds_zsm_ui_c_skillmatcher.SkillsValuesType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="SkillLanguage" EntityType="cds_zsm_ui_c_skillmatcher.SkillLanguageType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="SkillManagement" EntityType="cds_zsm_ui_c_skillmatcher.SkillManagementType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="SkillPeople" EntityType="cds_zsm_ui_c_skillmatcher.SkillPeopleType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="SkillTechnical" EntityType="cds_zsm_ui_c_skillmatcher.SkillTechnicalType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="TrainingsAll" EntityType="cds_zsm_ui_c_skillmatcher.TrainingsAllType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="NewTraining" EntityType="cds_zsm_ui_c_skillmatcher.NewTrainingType" sap:content-version="1"/>
+                <EntitySet Name="zsm_I_Bu" EntityType="cds_zsm_ui_c_skillmatcher.zsm_I_BuType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="EmpQual" EntityType="cds_zsm_ui_c_skillmatcher.EmpQualType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="EmpGender" EntityType="cds_zsm_ui_c_skillmatcher.EmpGenderType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="EmpLevel" EntityType="cds_zsm_ui_c_skillmatcher.EmpLevelType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ServiceSkillType" EntityType="cds_zsm_ui_c_skillmatcher.ServiceSkillTypeType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="EmpStatus" EntityType="cds_zsm_ui_c_skillmatcher.EmpStatusType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <AssociationSet Name="assoc_3B102CFEDE81D05EEC0978A0C3460D9B" Association="cds_zsm_ui_c_skillmatcher.assoc_3B102CFEDE81D05EEC0978A0C3460D9B" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ProjLive" Role="FromRole_assoc_3B102CFEDE81D05EEC0978A0C3460D9B"/>
+                    <End EntitySet="Employee" Role="ToRole_assoc_3B102CFEDE81D05EEC0978A0C3460D9B"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_D1BD2D0D02319180230039C1AA418AE2" Association="cds_zsm_ui_c_skillmatcher.assoc_D1BD2D0D02319180230039C1AA418AE2" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="Employee" Role="FromRole_assoc_D1BD2D0D02319180230039C1AA418AE2"/>
+                    <End EntitySet="DispProj" Role="ToRole_assoc_D1BD2D0D02319180230039C1AA418AE2"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_7F7A85ABE4B3471171AF6564A42AAD27" Association="cds_zsm_ui_c_skillmatcher.assoc_7F7A85ABE4B3471171AF6564A42AAD27" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="Employee" Role="FromRole_assoc_7F7A85ABE4B3471171AF6564A42AAD27"/>
+                    <End EntitySet="SkillManagement" Role="ToRole_assoc_7F7A85ABE4B3471171AF6564A42AAD27"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_623556D74CB95732A86F6AA888DAE6FA" Association="cds_zsm_ui_c_skillmatcher.assoc_623556D74CB95732A86F6AA888DAE6FA" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="CompProj" Role="FromRole_assoc_623556D74CB95732A86F6AA888DAE6FA"/>
+                    <End EntitySet="Employee" Role="ToRole_assoc_623556D74CB95732A86F6AA888DAE6FA"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_5B4329CC5EEEC24F3834D53B98C2A901" Association="cds_zsm_ui_c_skillmatcher.assoc_5B4329CC5EEEC24F3834D53B98C2A901" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="Employee" Role="FromRole_assoc_5B4329CC5EEEC24F3834D53B98C2A901"/>
+                    <End EntitySet="CompTrainings" Role="ToRole_assoc_5B4329CC5EEEC24F3834D53B98C2A901"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_1BE7924F04B4D00ED7E9292C1B3D4D37" Association="cds_zsm_ui_c_skillmatcher.assoc_1BE7924F04B4D00ED7E9292C1B3D4D37" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="Employee" Role="FromRole_assoc_1BE7924F04B4D00ED7E9292C1B3D4D37"/>
+                    <End EntitySet="CertificatesAll" Role="ToRole_assoc_1BE7924F04B4D00ED7E9292C1B3D4D37"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_8E475B9E4EA52345E7C11924F10C88A1" Association="cds_zsm_ui_c_skillmatcher.assoc_8E475B9E4EA52345E7C11924F10C88A1" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="TrainingsAll" Role="FromRole_assoc_8E475B9E4EA52345E7C11924F10C88A1"/>
+                    <End EntitySet="Employee" Role="ToRole_assoc_8E475B9E4EA52345E7C11924F10C88A1"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_27F0AB5D3C5D41773F3A68787CB1043B" Association="cds_zsm_ui_c_skillmatcher.assoc_27F0AB5D3C5D41773F3A68787CB1043B" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="SkillTechnical" Role="FromRole_assoc_27F0AB5D3C5D41773F3A68787CB1043B"/>
+                    <End EntitySet="Employee" Role="ToRole_assoc_27F0AB5D3C5D41773F3A68787CB1043B"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_442FED0326705DFA18D6A5248E4F3865" Association="cds_zsm_ui_c_skillmatcher.assoc_442FED0326705DFA18D6A5248E4F3865" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="CompTrainings" Role="FromRole_assoc_442FED0326705DFA18D6A5248E4F3865"/>
+                    <End EntitySet="Employee" Role="ToRole_assoc_442FED0326705DFA18D6A5248E4F3865"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_1EB23C7D6FACEEA0091054896FE10E8F" Association="cds_zsm_ui_c_skillmatcher.assoc_1EB23C7D6FACEEA0091054896FE10E8F" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="SkillManagement" Role="FromRole_assoc_1EB23C7D6FACEEA0091054896FE10E8F"/>
+                    <End EntitySet="Employee" Role="ToRole_assoc_1EB23C7D6FACEEA0091054896FE10E8F"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_F28CB34E5EDE551DB6689E16307022CC" Association="cds_zsm_ui_c_skillmatcher.assoc_F28CB34E5EDE551DB6689E16307022CC" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="Employee" Role="FromRole_assoc_F28CB34E5EDE551DB6689E16307022CC"/>
+                    <End EntitySet="SkillTechnical" Role="ToRole_assoc_F28CB34E5EDE551DB6689E16307022CC"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_8CC5126952246E3A3A44958FC3EBD760" Association="cds_zsm_ui_c_skillmatcher.assoc_8CC5126952246E3A3A44958FC3EBD760" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="Employee" Role="FromRole_assoc_8CC5126952246E3A3A44958FC3EBD760"/>
+                    <End EntitySet="ProjLive" Role="ToRole_assoc_8CC5126952246E3A3A44958FC3EBD760"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_40B30A374DD605E427B8A73D3876CAB0" Association="cds_zsm_ui_c_skillmatcher.assoc_40B30A374DD605E427B8A73D3876CAB0" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="Employee" Role="FromRole_assoc_40B30A374DD605E427B8A73D3876CAB0"/>
+                    <End EntitySet="first_page" Role="ToRole_assoc_40B30A374DD605E427B8A73D3876CAB0"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_7DED8D7B72E4BA663163D9EA5450E382" Association="cds_zsm_ui_c_skillmatcher.assoc_7DED8D7B72E4BA663163D9EA5450E382" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="DetailsEmp" Role="FromRole_assoc_7DED8D7B72E4BA663163D9EA5450E382"/>
+                    <End EntitySet="EmpQual" Role="ToRole_assoc_7DED8D7B72E4BA663163D9EA5450E382"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_5B51C4193954E0EDCF25BD6A8FFF9861" Association="cds_zsm_ui_c_skillmatcher.assoc_5B51C4193954E0EDCF25BD6A8FFF9861" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="SkillLanguage" Role="FromRole_assoc_5B51C4193954E0EDCF25BD6A8FFF9861"/>
+                    <End EntitySet="Employee" Role="ToRole_assoc_5B51C4193954E0EDCF25BD6A8FFF9861"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_B9291493AF8925E9A27BB23FEEE78AA7" Association="cds_zsm_ui_c_skillmatcher.assoc_B9291493AF8925E9A27BB23FEEE78AA7" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="Employee" Role="FromRole_assoc_B9291493AF8925E9A27BB23FEEE78AA7"/>
+                    <End EntitySet="SkillLanguage" Role="ToRole_assoc_B9291493AF8925E9A27BB23FEEE78AA7"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_6822F7D679A9F30D4F6BA08EB415D8E3" Association="cds_zsm_ui_c_skillmatcher.assoc_6822F7D679A9F30D4F6BA08EB415D8E3" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="SkillPeople" Role="FromRole_assoc_6822F7D679A9F30D4F6BA08EB415D8E3"/>
+                    <End EntitySet="Employee" Role="ToRole_assoc_6822F7D679A9F30D4F6BA08EB415D8E3"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_58A45DC774C03F18230EA9DD05944EB8" Association="cds_zsm_ui_c_skillmatcher.assoc_58A45DC774C03F18230EA9DD05944EB8" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="Employee" Role="FromRole_assoc_58A45DC774C03F18230EA9DD05944EB8"/>
+                    <End EntitySet="EmpLevel" Role="ToRole_assoc_58A45DC774C03F18230EA9DD05944EB8"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_96243816E8A000EE99D1E0349F43E2E6" Association="cds_zsm_ui_c_skillmatcher.assoc_96243816E8A000EE99D1E0349F43E2E6" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="Employee" Role="FromRole_assoc_96243816E8A000EE99D1E0349F43E2E6"/>
+                    <End EntitySet="DetailsEmp" Role="ToRole_assoc_96243816E8A000EE99D1E0349F43E2E6"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_FBC0A5E04A91057359541409E784E35A" Association="cds_zsm_ui_c_skillmatcher.assoc_FBC0A5E04A91057359541409E784E35A" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="Employee" Role="FromRole_assoc_FBC0A5E04A91057359541409E784E35A"/>
+                    <End EntitySet="CompProj" Role="ToRole_assoc_FBC0A5E04A91057359541409E784E35A"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_9A735CDF64382ACAE3481A8953FFE00A" Association="cds_zsm_ui_c_skillmatcher.assoc_9A735CDF64382ACAE3481A8953FFE00A" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="DetailsEmp" Role="FromRole_assoc_9A735CDF64382ACAE3481A8953FFE00A"/>
+                    <End EntitySet="EmpLevel" Role="ToRole_assoc_9A735CDF64382ACAE3481A8953FFE00A"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_8C6E910829E52E6B5CD9CF2092AC3098" Association="cds_zsm_ui_c_skillmatcher.assoc_8C6E910829E52E6B5CD9CF2092AC3098" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="DispProj" Role="FromRole_assoc_8C6E910829E52E6B5CD9CF2092AC3098"/>
+                    <End EntitySet="Employee" Role="ToRole_assoc_8C6E910829E52E6B5CD9CF2092AC3098"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_15835D4F896E9BB549152E54BA61A588" Association="cds_zsm_ui_c_skillmatcher.assoc_15835D4F896E9BB549152E54BA61A588" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="DetailsEmp" Role="FromRole_assoc_15835D4F896E9BB549152E54BA61A588"/>
+                    <End EntitySet="Employee" Role="ToRole_assoc_15835D4F896E9BB549152E54BA61A588"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_33AE6536DF4B96C197BCBCAA327C1A3F" Association="cds_zsm_ui_c_skillmatcher.assoc_33AE6536DF4B96C197BCBCAA327C1A3F" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="DetailsEmp" Role="FromRole_assoc_33AE6536DF4B96C197BCBCAA327C1A3F"/>
+                    <End EntitySet="EmpStatus" Role="ToRole_assoc_33AE6536DF4B96C197BCBCAA327C1A3F"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_1827219D5195A89204A54A8B7BEE78D0" Association="cds_zsm_ui_c_skillmatcher.assoc_1827219D5195A89204A54A8B7BEE78D0" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="DetailsEmp" Role="FromRole_assoc_1827219D5195A89204A54A8B7BEE78D0"/>
+                    <End EntitySet="EmpGender" Role="ToRole_assoc_1827219D5195A89204A54A8B7BEE78D0"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_5FB6917152C91BF71BA7493246C1A180" Association="cds_zsm_ui_c_skillmatcher.assoc_5FB6917152C91BF71BA7493246C1A180" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="first_page" Role="FromRole_assoc_5FB6917152C91BF71BA7493246C1A180"/>
+                    <End EntitySet="Employee" Role="ToRole_assoc_5FB6917152C91BF71BA7493246C1A180"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_8088A7D061B91B7E6901F1C6A0C81C25" Association="cds_zsm_ui_c_skillmatcher.assoc_8088A7D061B91B7E6901F1C6A0C81C25" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="Employee" Role="FromRole_assoc_8088A7D061B91B7E6901F1C6A0C81C25"/>
+                    <End EntitySet="SkillPeople" Role="ToRole_assoc_8088A7D061B91B7E6901F1C6A0C81C25"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_DD6BB0EE39001235CF824D6B8CA67A88" Association="cds_zsm_ui_c_skillmatcher.assoc_DD6BB0EE39001235CF824D6B8CA67A88" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="Employee" Role="FromRole_assoc_DD6BB0EE39001235CF824D6B8CA67A88"/>
+                    <End EntitySet="TrainingsAll" Role="ToRole_assoc_DD6BB0EE39001235CF824D6B8CA67A88"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_7F067EAEDB95E20E9834246AD241A11B" Association="cds_zsm_ui_c_skillmatcher.assoc_7F067EAEDB95E20E9834246AD241A11B" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="CertificatesAll" Role="FromRole_assoc_7F067EAEDB95E20E9834246AD241A11B"/>
+                    <End EntitySet="Employee" Role="ToRole_assoc_7F067EAEDB95E20E9834246AD241A11B"/>
+                </AssociationSet>
+            </EntityContainer>
+            <Annotations Target="cds_zsm_ui_c_skillmatcher.first_pageType/name" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Data model for bussiness units list"/>
+                        <PropertyValue Property="CollectionPath" String="zsm_I_Bu"/>
+                        <PropertyValue Property="SearchSupported" Bool="false"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="name"/>
+                                    <PropertyValue Property="ValueListProperty" String="name"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="bu_id"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zsm_ui_c_skillmatcher.cds_zsm_ui_c_skillmatcher_Entities" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Aggregation.ApplySupported">
+                    <Record>
+                        <PropertyValue Property="Transformations">
+                            <Collection>
+                                <String>aggregate</String>
+                                <String>groupby</String>
+                                <String>filter</String>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Rollup" EnumMember="None"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zsm_ui_c_skillmatcher.cds_zsm_ui_c_skillmatcher_Entities/CertificatesAll" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="FilterExpressionRestrictions">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="Description"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>Description</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zsm_ui_c_skillmatcher.cds_zsm_ui_c_skillmatcher_Entities/CompTrainings" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="FilterExpressionRestrictions">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="description"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>description</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zsm_ui_c_skillmatcher.cds_zsm_ui_c_skillmatcher_Entities/DetailsEmp" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="FilterExpressionRestrictions">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="emp_image"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>emp_image</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zsm_ui_c_skillmatcher.cds_zsm_ui_c_skillmatcher_Entities/DispProj" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="FilterExpressionRestrictions">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="TeamMembers"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="Description"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>TeamMembers</PropertyPath>
+                                <PropertyPath>Description</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zsm_ui_c_skillmatcher.cds_zsm_ui_c_skillmatcher_Entities/Employee" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="FilterExpressionRestrictions">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="emp_image"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>emp_image</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zsm_ui_c_skillmatcher.cds_zsm_ui_c_skillmatcher_Entities/NewCertification" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="FilterExpressionRestrictions">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="description"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>description</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zsm_ui_c_skillmatcher.cds_zsm_ui_c_skillmatcher_Entities/NewEmployee" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="FilterExpressionRestrictions">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="emp_image"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>emp_image</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zsm_ui_c_skillmatcher.cds_zsm_ui_c_skillmatcher_Entities/NewProject" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="FilterExpressionRestrictions">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="project_context"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="project_description"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="functional_req"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="non_funct_req"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>project_context</PropertyPath>
+                                <PropertyPath>project_description</PropertyPath>
+                                <PropertyPath>functional_req</PropertyPath>
+                                <PropertyPath>non_funct_req</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zsm_ui_c_skillmatcher.cds_zsm_ui_c_skillmatcher_Entities/NewTraining" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="FilterExpressionRestrictions">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="description"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>description</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zsm_ui_c_skillmatcher.cds_zsm_ui_c_skillmatcher_Entities/ProjDetails" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="FilterExpressionRestrictions">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="project_description"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="project_context"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="functional_req"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="non_funct_req"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>project_description</PropertyPath>
+                                <PropertyPath>project_context</PropertyPath>
+                                <PropertyPath>functional_req</PropertyPath>
+                                <PropertyPath>non_funct_req</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zsm_ui_c_skillmatcher.cds_zsm_ui_c_skillmatcher_Entities/ProjLive" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="FilterExpressionRestrictions">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="rv_team_members"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>rv_team_members</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zsm_ui_c_skillmatcher.cds_zsm_ui_c_skillmatcher_Entities/ProjectsOverview" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="FilterExpressionRestrictions">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="project_description"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="rv_team_members"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>project_description</PropertyPath>
+                                <PropertyPath>rv_team_members</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zsm_ui_c_skillmatcher.cds_zsm_ui_c_skillmatcher_Entities/ReactivateTrainings" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="FilterExpressionRestrictions">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="description"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>description</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zsm_ui_c_skillmatcher.cds_zsm_ui_c_skillmatcher_Entities/SearchCertificationsCrossBU" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="FilterExpressionRestrictions">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="Certification_Description"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>Certification_Description</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zsm_ui_c_skillmatcher.cds_zsm_ui_c_skillmatcher_Entities/SearchProjectsCrossBU" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="FilterExpressionRestrictions">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="description"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="teamMembers"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="funcReq"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="nonFuncReq"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>description</PropertyPath>
+                                <PropertyPath>teamMembers</PropertyPath>
+                                <PropertyPath>funcReq</PropertyPath>
+                                <PropertyPath>nonFuncReq</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zsm_ui_c_skillmatcher.cds_zsm_ui_c_skillmatcher_Entities/SearchTrainingsCrossBU" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="FilterExpressionRestrictions">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="Training_Description"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>Training_Description</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zsm_ui_c_skillmatcher.cds_zsm_ui_c_skillmatcher_Entities/TrainingsAll" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="FilterExpressionRestrictions">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="Description"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>Description</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <atom:link rel="self" href="http://sapvm22:8000/sap/opu/odata/sap/ZSM_UI_C_SKILLMATCHER/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://sapvm22:8000/sap/opu/odata/sap/ZSM_UI_C_SKILLMATCHER/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
